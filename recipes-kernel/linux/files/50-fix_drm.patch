@@ -1,0 +1,25 @@
+Patch imported from https://github.com/armbian/build.git at revision c55f6ea8bc220bded6695fdae8b0c5bfa891b688
+
+Upstream-Status: Inappropriate [not author]
+Signed-off-by: Florin Sarbu <florin@balena.io>
+---
+ drivers/gpu/drm/drm_ioctl.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+index afaa3fa..09fbadd 100644
+--- a/drivers/gpu/drm/drm_ioctl.c
++++ b/drivers/gpu/drm/drm_ioctl.c
+@@ -58,6 +58,9 @@ static int drm_getunique(struct drm_device *dev, void *data,
+ 	struct drm_unique *u = data;
+ 	struct drm_master *master = file_priv->master;
+ 
++	if (!master)
++		return -EINVAL;
++
+ 	if (u->unique_len >= master->unique_len) {
+ 		if (copy_to_user(u->unique, master->unique, master->unique_len))
+ 			return -EFAULT;
+-- 
+2.7.4
+
