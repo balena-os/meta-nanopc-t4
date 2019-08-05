@@ -1,0 +1,55 @@
+From ab9681ea74649e8dd1e96ef90ec41b9a080b59d6 Mon Sep 17 00:00:00 2001
+From: Florin Sarbu <florin@balena.io>
+Date: Sat, 3 Aug 2019 22:34:47 +0200
+Subject: [PATCH] mali: Allow to compile the mali driver out of the kernel
+ source tree
+
+These changes allow to compile the mali driver out of the kernel source
+tree (in yocto we compile the entire kernel tree in a separate build
+directory, outside the kernel source tree).
+
+Upstream-Status: Pending
+Signed-off-by: Florin Sarbu <florin@balena.io>
+---
+ drivers/gpu/arm/midgard/Kbuild            | 4 ++--
+ drivers/gpu/arm/midgard/tests/kutf/Kbuild | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/arm/midgard/Kbuild b/drivers/gpu/arm/midgard/Kbuild
+index cadc1a6..fb44c0f 100644
+--- a/drivers/gpu/arm/midgard/Kbuild
++++ b/drivers/gpu/arm/midgard/Kbuild
+@@ -133,7 +133,7 @@ mali_kbase-y := $(SRC:.c=.o)
+ # Kconfig passes in the name with quotes for in-tree builds - remove them.
+ platform_name := $(shell echo $(CONFIG_MALI_PLATFORM_NAME))
+ MALI_PLATFORM_DIR := platform/$(platform_name)
+-ccflags-y += -I$(src)/$(MALI_PLATFORM_DIR)
++ccflags-y += -I$(srctree)/$(src)/$(MALI_PLATFORM_DIR)
+ include $(src)/$(MALI_PLATFORM_DIR)/Kbuild
+ 
+ ifeq ($(CONFIG_MALI_DEVFREQ),y)
+@@ -161,7 +161,7 @@ include  $(src)/backend/gpu/Kbuild
+ mali_kbase-y += $(BACKEND:.c=.o)
+ 
+ 
+-ccflags-y += -I$(src)/backend/gpu
++ccflags-y += -I$(srctree)/$(src)/backend/gpu
+ subdir-ccflags-y += -I$(src)/backend/gpu
+ 
+ # For kutf and mali_kutf_irq_latency_test
+diff --git a/drivers/gpu/arm/midgard/tests/kutf/Kbuild b/drivers/gpu/arm/midgard/tests/kutf/Kbuild
+index 2531d41..bda60ed 100644
+--- a/drivers/gpu/arm/midgard/tests/kutf/Kbuild
++++ b/drivers/gpu/arm/midgard/tests/kutf/Kbuild
+@@ -19,7 +19,7 @@
+ #
+ #
+ 
+-ccflags-y += -I$(src)/../include
++ccflags-y += -I$(srctree)/$(src)/../include
+ 
+ obj-$(CONFIG_MALI_KUTF) += kutf.o
+ 
+-- 
+2.7.4
+
