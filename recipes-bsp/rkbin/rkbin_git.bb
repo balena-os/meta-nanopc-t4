@@ -16,8 +16,9 @@ do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install () {
-    install -d ${D}/lib/firmware/rkwifi/
-    cp -fr ${S}/firmware/wifi/fw_bcm4356a2_ag.bin ${S}/firmware/wifi/nvram_ap6356.txt ${D}/lib/firmware/rkwifi/
+    install -d ${D}/lib/firmware/brcm/
+    cp -fr ${S}/firmware/wifi/fw_bcm4356a2_ag.bin ${D}/lib/firmware/brcm/brcmfmac4356-sdio.bin
+    cp -fr ${S}/firmware/wifi/nvram_ap6356.txt ${D}/lib/firmware/brcm/brcmfmac4356-sdio.txt
 }
 
 PACKAGES =+ " \
@@ -25,7 +26,7 @@ PACKAGES =+ " \
     ${PN}-bt \
 "
 
-FILES_${PN}-wifi = "/lib/firmware/rkwifi/*"
+FILES_${PN}-wifi = "/lib/firmware/brcm/*"
 
 do_deploy () {
     install -d ${DEPLOYDIR}/rkbin/tools
