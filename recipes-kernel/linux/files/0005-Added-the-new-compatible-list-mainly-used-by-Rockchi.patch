@@ -17,7 +17,7 @@ This patch fixes this issue.
 
 Signed-off-by: Myy <myy@miouyouyou.fr>
 
-Patch imported from https://github.com/armbian/build.git at revision c55f6ea8bc220bded6695fdae8b0c5bfa891b688
+Patch imported from https://github.com/armbian/build/tree/master/patch/kernel/rockchip-next, revision c55f6ea8bc220bded6695fdae8b0c5bfa891b688
 
 Upstream-Status: Inappropriate [not author]
 Signed-off-by: Florin Sarbu <florin@balena.io>

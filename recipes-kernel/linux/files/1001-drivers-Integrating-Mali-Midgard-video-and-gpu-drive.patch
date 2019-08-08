@@ -7,7 +7,7 @@ I'm dropping the UMP drivers. They are not maintained.
 
 Signed-off-by: Myy Miouyouyou <myy@miouyouyou.fr>
 
-Patch imported from https://github.com/armbian/build.git at revision c55f6ea8bc220bded6695fdae8b0c5bfa891b688
+Patch imported from https://github.com/armbian/build/tree/master/patch/kernel/rockchip-next, revision c55f6ea8bc220bded6695fdae8b0c5bfa891b688
 
 Upstream-Status: Inappropriate [not author]
 Signed-off-by: Florin Sarbu <florin@balena.io>
@@ -17,10 +17,10 @@ Signed-off-by: Florin Sarbu <florin@balena.io>
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/Makefile b/drivers/gpu/Makefile
-index f17d01f..43c37d0 100644
+index e9ed439a5..66386b42a 100644
 --- a/drivers/gpu/Makefile
 +++ b/drivers/gpu/Makefile
-@@ -3,5 +3,5 @@
+@@ -2,5 +2,5 @@
  # taken to initialize them in the correct order. Link order is the only way
  # to ensure this currently.
  obj-$(CONFIG_TEGRA_HOST1X)	+= host1x/
@@ -28,10 +28,10 @@ index f17d01f..43c37d0 100644
 +obj-y			+= drm/ vga/ arm/
  obj-$(CONFIG_IMX_IPUV3_CORE)	+= ipu-v3/
 diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
-index 427a993..77445ce 100644
+index 3c20af999..041e15f2c 100644
 --- a/drivers/video/Kconfig
 +++ b/drivers/video/Kconfig
-@@ -16,6 +16,7 @@ source "drivers/gpu/vga/Kconfig"
+@@ -17,6 +17,7 @@ source "drivers/gpu/vga/Kconfig"
  
  source "drivers/gpu/host1x/Kconfig"
  source "drivers/gpu/ipu-v3/Kconfig"
@@ -40,5 +40,5 @@ index 427a993..77445ce 100644
  source "drivers/gpu/drm/Kconfig"
  
 -- 
-2.7.4
+2.14.1
 
