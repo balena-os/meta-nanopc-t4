@@ -7,6 +7,8 @@ LINUX_VERSION = "5.2.0"
 
 DEPENDS += "coreutils-native"
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/files/5.2.0:"
+
 SRC_URI = " \
     git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git;protocol=git;branch=master \
     file://defconfig \
